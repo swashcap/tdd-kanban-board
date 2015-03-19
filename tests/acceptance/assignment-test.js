@@ -18,9 +18,10 @@ module('Acceptance: Assignment', {
 });
 
 test('visiting /assignment', function(assert) {
-  visit('/assignment');
+  visit('/');
 
   andThen(function() {
-    assert.equal(currentPath(), 'assignment');
+    var unassigned = find('table.unassigned tr.cards');
+    assert.equal(unassigned.length, 3);
   });
 });
