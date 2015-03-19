@@ -7,9 +7,21 @@ import startApp from 'tdd-kanban-board/tests/helpers/start-app';
 
 var application;
 
+var first  = { status_code: 1, project: 'first' };
+var second = { status_code: 1, project: 'second' };
+var third  = { status_code: 1, project: 'third' };
+var last   = { status_code: 2, project: 'last' };
+
+var json = [first, second, third, last];
+
 module('Acceptance: Assignment', {
   beforeEach: function() {
     application = startApp();
+
+    $.fauxjax.new({
+      url: '/api/todos',
+      responseText: json
+    });
   },
 
   afterEach: function() {

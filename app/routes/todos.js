@@ -3,11 +3,14 @@ import Todo from 'tdd-kanban-board/models/todo';
 
 export default Ember.Route.extend({
   model: function () {
-    var first  = Todo.create({ status_code: 1, project: 'first' });
-    var second = Todo.create({ status_code: 1, project: 'second' });
-    var third  = Todo.create({ status_code: 1, project: 'third' });
-    var last   = Todo.create({ status_code: 2, project: 'last' });
+    var todos = [];
 
-    return [first, second, third, last];
+    return $.getJSON('/api/todos').then(function (response) {
+      response.forEach(function (data) {
+        todos.pushObject(Todo.create(data));
+      });
+
+      return todos;
+    });
   }
 });
