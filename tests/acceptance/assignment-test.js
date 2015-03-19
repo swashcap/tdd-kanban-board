@@ -40,7 +40,7 @@ test('assigned items are grouped together', function(assert) {
   });
 });
 
-test('status is shown in plain english', function () {
+test('status is shown in plain english', function (assert) {
   visit('/');
 
   andThen(function() {
