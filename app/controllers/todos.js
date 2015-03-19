@@ -1,11 +1,16 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  actions: {
+    assign: function (todo) {
+      todo.set('status_code', 2);
+    }
+  },
   unassigned: function () {
     return this.get('model').filter(model => model.status_code === 1);
-  }.property(),
+  }.property('model.@each.status_code'),
 
   assigned: function () {
     return this.get('model').filter(model => model.status_code === 2);
-  }.property()
+  }.property('model.@each.status_code')
 });
